@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>snApp</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="bundle.js" id="searchspring-context"></script>
+	</head>
+	<body>
+		<script type="searchspring/recommendations">
+			globals = {
+					shopper: {
+							id: 'snapdev'
+					},
+			};
+			profiles = [
+				{
+					tag: 'trending',
+					selector: '.ss__recs__default',
+					options: {
+						// options for the default recommendations
+					}
+				}
+			];
+		</script>
+
+		<div class="ss__recs__default" style="min-height: 100vh"><!-- recommendations will render here --></div>
+	</body>
+</html>

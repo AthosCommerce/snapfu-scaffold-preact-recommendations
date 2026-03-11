@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>snApp</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="bundle.js" id="searchspring-context"></script>
+	</head>
+	<body>
+		<script type="searchspring/recommendations">
+			globals = {
+					shopper: {
+							id: 'snapdev'
+					},
+					products: ['SEED_SKU'], // add seed product SKU here (replace SEED_SKU with an actual SKU)
+			};
+			profiles = [
+				{
+					tag: 'bundle',
+					selector: '.ss__recs__bundle',
+					options: {
+						// options for the bundle recommendations
+					}
+				}
+			];
+		</script>
+
+		<div class="ss__recs__bundle" style="min-height: 100vh"><!-- recommendations will render here --></div>
+	</body>
+</html>
