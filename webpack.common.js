@@ -6,7 +6,12 @@ const childProcess = require('child_process');
 const path = require('path');
 
 // determine branch name for branch override usage
-const branchName = childProcess.execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+let branchName;
+try {
+	branchName = childProcess.execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+} catch (e) {
+	branchName = 'production';
+}
 
 // class name for for branch override usage
 const styleClass = 'ss-snap-bundle-styles';
@@ -21,7 +26,7 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.BannerPlugin({
-			banner: 'window.searchspring = window.searchspring || {};\nwindow.searchspring.managed = {{ snapfu.managed }};',
+			banner: 'window.athos = window.athos || {};\nwindow.athos.managed = {{ snapfu.managed }};',
 			raw: true,
 			entryOnly: true,
 		}),

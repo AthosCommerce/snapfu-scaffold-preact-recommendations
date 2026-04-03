@@ -3,9 +3,15 @@
 
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
-const path = require('path');
 const childProcess = require('child_process');
-const branchName = childProcess.execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+
+// determine branch name for branch override usage
+let branchName;
+try {
+	branchName = childProcess.execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+} catch (e) {
+	branchName = 'production';
+}
 
 module.exports = merge(common, {
 	mode: 'production',
@@ -20,10 +26,11 @@ module.exports = merge(common, {
 		rules: [
 			{
 				test: /\.(js|jsx|mjs)$/,
-				include: [/node_modules\/@searchspring/, /node_modules\/swiper/, path.resolve(__dirname, 'src')],
+				exclude: (modulePath) => /[\\/]node_modules[\\/]/.test(modulePath) && !/[\\/]node_modules[\\/](@athoscommerce|swiper|color[\\/]|color-convert)/.test(modulePath),
 				use: {
 					loader: 'babel-loader',
 					options: {
+						sourceType: 'unambiguous',
 						presets: [
 							[
 								'@babel/preset-env',
