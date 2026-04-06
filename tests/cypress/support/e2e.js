@@ -33,29 +33,29 @@ Cypress.on('uncaught:exception', (err) => {
 
 beforeEach(() => {
 	// make references to requests available
-	cy.intercept(/.*searchspring.io\/api\/search\/search/).as('search');
-	cy.intercept(/.*searchspring.io\/api\/search\/autocomplete/).as('autocomplete');
+	cy.intercept(/.*athoscommerce\.net\/v1\/search/).as('search');
+	cy.intercept(/.*athoscommerce\.net\/v1\/autocomplete/).as('autocomplete');
 
-	// prevent v2 and v3 assets
-	cy.intercept(/.*searchspring.net\/search\/*/, (req) => {
+	// prevent searchspring assets and requests
+	cy.intercept(/.*searchspring\.io\/*/, (req) => {
 		req.destroy();
 	});
-	cy.intercept(/.*searchspring.net\/autocomplete\/*/, (req) => {
-		req.destroy();
-	});
-	cy.intercept(/.*searchspring.net\/ajax_search\/js\/*/, (req) => {
+	cy.intercept(/.*searchspring\.net\/*/, (req) => {
 		req.destroy();
 	});
 
 	// prevent snap assets
-	cy.intercept(/.*snapui.searchspring.io\/.*.js.*$/, (req) => {
+	cy.intercept(/.*snapui.searchspring\.io\/.*.js.*$/, (req) => {
+		req.destroy();
+	});
+	cy.intercept(/.*snapui.athoscommerce\.io\/.*.js.*$/, (req) => {
 		req.destroy();
 	});
 
-	cy.intercept('POST', /beacon.searchspring.io\/beacon\/v2\/.*\/autocomplete\/impression/, { success: true }).as('beacon2/autocomplete/impression');
-	cy.intercept('POST', /beacon.searchspring.io\/beacon\/v2\/.*\/autocomplete\/clickthrough/, { success: true }).as('beacon2/autocomplete/clickthrough');
-	cy.intercept('POST', /beacon.searchspring.io\/beacon\/v2\/.*\/search\/impression/, { success: true }).as('beacon2/search/impression');
-	cy.intercept('POST', /beacon.searchspring.io\/beacon\/v2\/.*\/search\/clickthrough/, { success: true }).as('beacon2/search/clickthrough');
-	cy.intercept('POST', /beacon.searchspring.io\/beacon\/v2\/.*\/category\/impression/, { success: true }).as('beacon2/category/impression');
-	cy.intercept('POST', /beacon.searchspring.io\/beacon\/v2\/.*\/category\/clickthrough/, { success: true }).as('beacon2/category/clickthrough');
+	cy.intercept('POST', /analytics\.athoscommerce\.net\/beacon\/v2\/.*\/autocomplete\/impression/, { success: true }).as('beacon2/autocomplete/impression');
+	cy.intercept('POST', /analytics\.athoscommerce\.net\/beacon\/v2\/.*\/autocomplete\/clickthrough/, { success: true }).as('beacon2/autocomplete/clickthrough');
+	cy.intercept('POST', /analytics\.athoscommerce\.net\/beacon\/v2\/.*\/search\/impression/, { success: true }).as('beacon2/search/impression');
+	cy.intercept('POST', /analytics\.athoscommerce\.net\/beacon\/v2\/.*\/search\/clickthrough/, { success: true }).as('beacon2/search/clickthrough');
+	cy.intercept('POST', /analytics\.athoscommerce\.net\/beacon\/v2\/.*\/category\/impression/, { success: true }).as('beacon2/category/impression');
+	cy.intercept('POST', /analytics\.athoscommerce\.net\/beacon\/v2\/.*\/category\/clickthrough/, { success: true }).as('beacon2/category/clickthrough');
 });

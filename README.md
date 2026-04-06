@@ -25,4 +25,4 @@ Files are output to `./dist`
 ## Resources
 
 https://preactjs.com/guide/v10/getting-started  
-https://athoscommerce.github.io/snap/snap-setup
+https://athoscommerce.github.io/snap/snap-overview  

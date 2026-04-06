@@ -40,7 +40,7 @@ describe('Recommendations', () => {
 
 		cy.waitForBundle().then(() => {
 			cy.window().then((window) => {
-				expect(window.searchspring).to.exist;
+				expect(window.athos).to.exist;
 			});
 		});
 

@@ -8,7 +8,7 @@ module.exports = (api) => {
 				{
 					modules: false,
 					useBuiltIns: 'usage',
-					corejs: '3.19',
+					corejs: '3.30',
 				},
 			],
 			['@babel/preset-react'],
@@ -29,7 +29,6 @@ module.exports = (api) => {
 					pragmaFrag: 'Fragment',
 				},
 			],
-			['@babel/plugin-transform-arrow-functions'],
 		],
 	};
 };
